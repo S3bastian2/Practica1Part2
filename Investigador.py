@@ -5,9 +5,11 @@ from Hora import *
 from FechaHora import *
 
 class Investigador(Usuario):
-    def __init__(self, nombre, id, ciudad_nacimiento, tel, email, contraseña, inventario = None):
-        super().__init__(nombre, id, ciudad_nacimiento, tel, email)
+    def __init__(self, nombre, id, ciudadNacimiento, tel, email, contraseña, inventario = None):
+        super().__init__(nombre, id, ciudadNacimiento, tel, email)
+        self.__fechaNacimiento = Fecha
         self.__contraseña = contraseña
+        self.__dir = Direccion
         self.__inventario = inventario if inventario is not None else []
         
     def setInventario(self, inventario):
@@ -16,11 +18,11 @@ class Investigador(Usuario):
     def getInventario(self):
         return self.__inventario
     
-    def setDir(self, Direccion):
-        return super().setDir(Direccion)
-    
+    def setDir(self, direccion):
+        self.__dir = direccion
+        
     def getDir(self):
-        return super().getDir()
+        return self.__dir
     
     def setNombre(self, nombre):
         return super().setNombre(nombre)
@@ -37,8 +39,8 @@ class Investigador(Usuario):
     def getCiudadNacimiento(self):
         return super().getCiudadNacimiento()
     
-    def setCiudadNacimiento(self, ciudad_nacimiento):
-        return super().setCiudadNacimiento(ciudad_nacimiento)
+    def setCiudadNacimiento(self, ciudadNacimiento):
+        return super().setCiudadNacimiento(ciudadNacimiento)
     
     def setTelefono(self, tel):
         return super().setTelefono(tel)
@@ -59,14 +61,46 @@ class Investigador(Usuario):
         return self.__contraseña
     
     def setFechaNacimiento(self, Fecha):
-        return super().setFechaNacimiento(Fecha)
+        self.__fechaNacimiento = Fecha
     
     def getFechaNacimiento(self):
-        return super().getFechaNacimiento()
+        return self.__fechaNacimiento
     
     def __str__(self):
         listaStr = "|". join(map(str, self.__inventario))
         return self.getNombre()+","+str(self.getId())+","+str(self.getFechaNacimiento())+","+self.getCiudadNacimiento()+","+str(self.getTelefono())+","+self.getEmail()+","+str(self.getDir())+","+self.getContraseña()+","+listaStr
+
+    @classmethod
+    def from_string(cls, string):
+        strSpliteado = string.strip().split(",")
+        listaStr = strSpliteado[8]
+        nombre = strSpliteado[0]
+        id = int(strSpliteado[1])
+        ciudadNacimiento = strSpliteado[3]
+        tel = int(strSpliteado[4])
+        email = strSpliteado[5]
+        contraseña =strSpliteado[7]
+        inventario = listaStr.split("|")
+        for i in range(len(inventario)):
+            inventario[i] = int(inventario[i])
+            
+        atrFecha = strSpliteado[2].split("/")
+        fNacimiento = Fecha(atrFecha[0],atrFecha[1],atrFecha[2])
+        cls.setFechaNacimiento(cls, fNacimiento)
+        
+        atrDireccion = strSpliteado[6].split("/")
+        direccion = Direccion(atrDireccion[0],atrDireccion[1],atrDireccion[2],atrDireccion[3],atrDireccion[4],atrDireccion[5])
+        cls.setDir(cls,direccion)
+
+        return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
+
+
+
+
+
+
+
+
 
 IV = Investigador("Carlos", 1010, "medallo", 3131313, "asdas@fsdf.co", "Papulon",[1,2,3,4,5])
 f1 = Fecha(15,12,2005)
@@ -95,3 +129,12 @@ with open("C:/EjemplosPY/Empleados.txt", "w") as archivo:
             archivo.write(str(emp))
         else:
             archivo.write(str(emp)+ "\n")
+            
+listaNueva = []
+with open("c:/EjemplosPY/Empleados.txt", "r") as archivo:
+    for linea in archivo:
+        listaNueva.append(Investigador.from_string(linea))
+        
+for i in listaNueva:
+    print(i)
+    
