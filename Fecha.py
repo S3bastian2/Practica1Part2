@@ -23,4 +23,4 @@ class Fecha():
         self.__año = aa
     
     def __str__(self):
-        return str(self.__dia) + " " + str(self.__mes) + " " + str(self.__año)
+        return str(self.__dia) + "/" + str(self.__mes) + "/" + str(self.__año)
