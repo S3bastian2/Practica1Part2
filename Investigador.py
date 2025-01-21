@@ -122,14 +122,15 @@ IV3.setDir(d3)
 
 ListaTodos = [IV,IV2,IV3]
 
-#Guardar
+#Guardar va en main
 with open("C:/EjemplosPY/Empleados.txt", "w") as archivo:
     for emp in ListaTodos:
         if emp == ListaTodos[-1]:
             archivo.write(str(emp))
         else:
             archivo.write(str(emp)+ "\n")
-            
+
+#leer va en main            
 listaNueva = []
 with open("c:/EjemplosPY/Empleados.txt", "r") as archivo:
     for linea in archivo:
