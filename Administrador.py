@@ -94,18 +94,3 @@ class Administrador(Usuario):
         cls.setDir(cls,direccion)
 
         return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
-    
-admin = Administrador("Andrés",3030, "Cali", 3151515, "andres@example.com","Químico", [11,12,13,14,15])
-f2 = Fecha(9, 12,2003)
-dir2 = Direccion("Calle5", "25-50", "SanFernando", "Cali", None, None)
-admin.setFechaNacimiento(f2)
-admin.setDir(dir2)
-
-ListaTodos = [admin]
-
-with open("Textos/Empleados.txt", "a") as archivo:
-    archivo.write("\n"+ str(ListaTodos[-1]))
-
-with open("Textos/Password.txt", "a") as archivo:
-    archivo.write("\n"+str(admin.getId())+" "+admin.getContraseña()+" administrador")
-

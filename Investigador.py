@@ -102,7 +102,7 @@ class Investigador(Usuario):
 
 
 
-IV = Investigador("Carlos", 1010, "medallo", 3131313, "asdas@fsdf.co", "Papulon",[1,2,3,4,5])
+"""IV = Investigador("Carlos", 1010, "medallo", 3131313, "asdas@fsdf.co", "Papulon",[1,2,3,4,5])
 f1 = Fecha(15,12,2005)
 d1 = Direccion("Kra84b","63-25","Robledo","Medellin",None,None)
 IV.setFechaNacimiento(f1)
@@ -138,14 +138,10 @@ with open("Textos/Password.txt", "w") as archivo:
             archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador")
         else:
             archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador"+"\n")
-        
+        """
 
-"""#leer va en main            
+#leer va en main            
 listaNueva = []
 with open("c:/EjemplosPY/Empleados.txt", "r") as archivo:
     for linea in archivo:
         listaNueva.append(Investigador.from_string(linea))
-        
-for i in listaNueva:
-    print(i)"""
-    

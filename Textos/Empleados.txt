@@ -1,4 +1,3 @@
 Carlos,1010,15/12/2005,medallo,3131313,asdas@fsdf.co,Kra84b/63-25/Robledo/Medellin/None/None,Papulon,1|2|3|4|5
-Laura,2020,22/7/1990,Bogotá,3141414,laura@example.com,Carrera 15/45-10/Chapinero/Bogotá/None/None,Biología,6|7|8|9|10
-Andrés,3030,9/3/1985,Cali,3151515,andres@example.com,Calle 5/25-50/San Fernando/Cali/None/None,Química,11|12|13|14|15
-Andrés,3030,9/12/2003,Cali,3151515,andres@example.com,Calle5/25-50/SanFernando/Cali/None/None,Químico,11|12|13|14|15
+Laura,2020,22/7/1990,Bogota,3141414,laura@example.com,Carrera 15/45-10/Chapinero/Bogota/None/None,Biologia,6|7|8|9|10
+Andres,3030,9/3/1985,Cali,3151515,andres@example.com,Calle 5/25-50/San Fernando/Cali/None/None,Quimica,11|12|13|14|15
