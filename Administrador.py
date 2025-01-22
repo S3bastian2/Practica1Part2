@@ -12,16 +12,16 @@ class Administrador(Usuario):
         self.__inventario = inventario if inventario is not None else []
 
     def setNombre(self, nombre):
-        self.__nombre = nombre
+        return super().setNombre(nombre)
     
     def getNombre(self):
-        return self.__nombre
+        return super().getNombre()
     
     def setId(self, id):
-        self.__id = id
+        return super().setId(id)
     
     def getId(self):
-        return self.__id
+        return super().getId()
     
     def getCiudadNacimiento(self):
         return super().getCiudadNacimiento()
@@ -69,8 +69,10 @@ class Administrador(Usuario):
         listaStr = "|". join(map(str, self.__inventario))
         return self.getNombre() + "," + str(self.getId()) + "," + str(self.getFechaNacimiento()) + "," + self.getCiudadNacimiento() + "," + str(self.getTelefono()) + "," + self.getEmail() + "," + str(self.getDir()) + "," + self.getContraseña() + "," + listaStr
     
+    
     @classmethod
     def from_string(cls, string):
+    
         strSpliteado = string.strip().split(",")
         listaStr = strSpliteado[8]
         nombre = strSpliteado[0]
@@ -92,3 +94,18 @@ class Administrador(Usuario):
         cls.setDir(cls,direccion)
 
         return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
+    
+admin = Administrador("Andrés",3030, "Cali", 3151515, "andres@example.com","Químico", [11,12,13,14,15])
+f2 = Fecha(9, 12,2003)
+dir2 = Direccion("Calle5", "25-50", "SanFernando", "Cali", None, None)
+admin.setFechaNacimiento(f2)
+admin.setDir(dir2)
+
+ListaTodos = [admin]
+
+with open("Textos/Empleados.txt", "a") as archivo:
+    archivo.write("\n"+ str(ListaTodos[-1]))
+
+with open("Textos/Password.txt", "a") as archivo:
+    archivo.write("\n"+str(admin.getId())+" "+admin.getContraseña()+" administrador")
+
