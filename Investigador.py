@@ -163,7 +163,7 @@ with open("Textos/Password.txt", "w") as archivo:
         if emp == ListaTodos[-1]:
             archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador")
         else:
-            archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador"+"\n")"""
+            archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador"+"\n")
         
 
 #leer va en main            
@@ -173,6 +173,6 @@ with open("Textos/Password.txt", "w") as archivo:
 #        listaNueva.append(Investigador.from_string(linea))
 
 #Codigo para actualizar inventario con append
-""""x = IV.getInventario()
+x = IV.getInventario()
 x.append(e1)
 IV.setInventario(x)"""

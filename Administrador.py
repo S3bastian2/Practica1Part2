@@ -101,8 +101,8 @@ class Administrador(Usuario):
 
         return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
     
-"""e1 = Equipo("HPproDesk", 98789876, 12000,1010)
-fe = Fecha(15,12,2005)
+"""e1 = Equipo("MacBook Pro", 98789876, 12000, 4040)
+fe = Fecha(19, 4, 2020)
 e1.setFechaCompra(fe)
 
 E1 = Equipo("PavilionZ10", 11223344, 1250,3030)
@@ -113,24 +113,21 @@ F1 = Fecha(dia, mes, año)
 E1.setFechaCompra(F1)
 
 
-IV = Administrador("Juancho", 1010, "medallo", 3131313, "asdas@fsdf.co", "Papulon",[E1])
+AD = Administrador("Felipe", 4040, "Miami", 3113290044, "adidas@gmail.com.co", "Sociales",[])
 f1 = Fecha(15,12,2005)
 d1 = Direccion("Kra84b","63-25","Robledo","Medellin",None,None)
-IV.setFechaNacimiento(f1)
-IV.setDir(d1)
+AD.setFechaNacimiento(f1)
+AD.setDir(d1)
 
-x = IV.getInventario()
+x = AD.getInventario()
 x.append(e1)
-IV.setInventario(x)
+AD.setInventario(x)
 
-with open("Textos/Empleados.txt", "w") as archivo:
-    archivo.write(str(IV))
-    
-listaNueva = []
-with open("Textos/Empleados.txt", "r") as archivo:
-    for linea in archivo:
-        listaNueva.append(Administrador.from_string(linea))
-        
-for i in listaNueva:
-    x = i.getInventario()
-    print(str(x[0]), str(x[1]))"""
+listaTodos = [AD]
+#Guardar va en main
+with open("Textos/Empleados.txt", "a") as archivo:
+    archivo.write("\n" + str(AD))
+
+with open("Textos/Password.txt", "a") as archivo:
+    for emp in listaTodos:
+        archivo.write("\n" + str(emp.getId())+" "+emp.getContraseña()+" administrador")"""
