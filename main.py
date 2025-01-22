@@ -137,12 +137,15 @@ while respuesta != "salir":
                     nuevaSolicitud.setEquipo(None)
 
                     listaSolicitudes.append(nuevaSolicitud)
-                    """print(str(nuevaSolicitud))
+                    """print(str(nuevaSolicitud)) #Probando si las solicitud se esta creando correctamente.
                     for soli in listaSolicitudes:
                         if isinstance(soli, Solicitud):
                             n = soli.getNombre()
                     print(n)"""
                     print("La solicitud ha sido creada y agregada con exito. ")
+                    with open("Textos/Solicitudes.txt", "w") as archivo:
+                        for obje in listaSolicitudes:
+                            
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
@@ -187,9 +190,8 @@ while respuesta != "salir":
                     nuevaSolicitud = Solicitud(nombre, tipo, estado)
                     nuevaSolicitud.setFechaSolicitud(fechita)
                     nuevaSolicitud.setEquipo(equipoEncontrado)
-                    print(nuevaSolicitud)
-
                     listaSolicitudes.append(nuevaSolicitud)
+                    print(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
                     menus()
                 elif respuesta == "no":
@@ -197,7 +199,8 @@ while respuesta != "salir":
                     menus()
                 else:
                     sys.exit()
-
+            elif op == 4:
+                print(listaSolicitudes)
 
 
             elif op == 5:
@@ -238,8 +241,8 @@ while respuesta != "salir":
             
     menus()
 
-    with open("Textos/Empleado.txt", "r") as archivo:
-        for linea in archivo:
-            listaNueva.append(Investigador.from_string(linea))
+    #with open("Textos/Empleado.txt", "r") as archivo:
+    #    for linea in archivo:
+    #        listaNueva.append(Investigador.from_string(linea))
             
 

@@ -41,4 +41,25 @@ class Solicitud():
     
     def __str__(self):
         return str(self.getNombre()) + " " + str(self.getTipo()) + " " + str(self.getEquipo()) + " " + str(self.getFechaSolicitud()) + " " + str(self.getEstado())
+    
+    @classmethod
+    def from_string(cls, string):
+        strSpliteado = string.strip().split(",")
+        nombreInvestigador = strSpliteado[0]
+        tipo = strSpliteado[1]
+        estado = strSpliteado[4]
+        
+        atrEquipo = strSpliteado[2].split("|")
+        equipAgre = Equipo(atrEquipo[0], atrEquipo[1], atrEquipo[2], atrEquipo[3], atrEquipo[4])
+        cls.setEquipo(cls, equipAgre)
+        
+        feSoliDia = strSpliteado[3].split("/")
+        feDia = Fecha(feSoliDia[0], feSoliDia[1], feSoliDia[2])
+        feSoliHora = strSpliteado[3].split("/")
+        feHora = Hora(feSoliHora[0], feSoliHora[1], feSoliHora[2])
+        fecSoli = FechaHora(feDia, feHora)
+        cls.setFechaSolicitud(cls, fecSoli)
+        
+        return cls(nombreInvestigador, tipo, estado)
+
         
