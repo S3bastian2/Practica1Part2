@@ -77,12 +77,39 @@ while respuesta != "salir":
                 temp = temp.getNext()
         if vf == False:
             return print("Id o contrasela incorrectos")
-        
-        
-    x = login()
-    print(x)
-                                
     
+    x = login()
+    # Menu de opciones -------------------------------------------------------------------------
+    
+    if type(x) == Investigador:
+        print("***********MENU***********")
+        print("1.txt inventario")
+        print("2. Agregar equipo")
+        print("3. Eliminar equipo")
+        print("4.txt Estado Solicitudes")
+        print("4. salir")
+        op = int(input())
+        if op == 1:
+            pass
+    else:
+        print("***********MENU***********")
+        print("0.Buscar usuario registrado")
+        print("1.txt inventario")
+        print("2.Agregar usuario")
+        print("3.Eliminar usuario")
+        print("4.Cambiar contraseña")
+        print("5.Solicitudes Agregar equipo")
+        print("6.Solicitudes Eliminar equipo")
+        print("7.Inventario segun investigador(txt)")
+        print("8.Inventario general(txt)")
+        print("9.Control de cambios(txt)")
+        print("10.Solicitudes agregar(txt)")
+        print("11.Solicitudes eliminar(txt)")
+        print("12. Agregar Equipo Administrador")
+        print("13. Salir")
+        op = int(input())
+        if op == 0:                        
+            pass
     respuesta = "salir"
     
 """    with open("Textos/Empleado.txt", "r") as archivo:
