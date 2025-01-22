@@ -68,3 +68,27 @@ class Administrador(Usuario):
     def __str__(self):
         listaStr = "|". join(map(str, self.__inventario))
         return self.getNombre() + "," + str(self.getId()) + "," + str(self.getFechaNacimiento()) + "," + self.getCiudadNacimiento() + "," + str(self.getTelefono()) + "," + self.getEmail() + "," + str(self.getDir()) + "," + self.getContraseña() + "," + listaStr
+    
+    @classmethod
+    def from_string(cls, string):
+        strSpliteado = string.strip().split(",")
+        listaStr = strSpliteado[8]
+        nombre = strSpliteado[0]
+        id = int(strSpliteado[1])
+        ciudadNacimiento = strSpliteado[3]
+        tel = int(strSpliteado[4])
+        email = strSpliteado[5]
+        contraseña =strSpliteado[7]
+        inventario = listaStr.split("|")
+        for i in range(len(inventario)):
+            inventario[i] = int(inventario[i])
+            
+        atrFecha = strSpliteado[2].split("/")
+        fNacimiento = Fecha(atrFecha[0],atrFecha[1],atrFecha[2])
+        cls.setFechaNacimiento(cls, fNacimiento)
+        
+        atrDireccion = strSpliteado[6].split("/")
+        direccion = Direccion(atrDireccion[0],atrDireccion[1],atrDireccion[2],atrDireccion[3],atrDireccion[4],atrDireccion[5])
+        cls.setDir(cls,direccion)
+
+        return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
