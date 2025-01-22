@@ -14,6 +14,7 @@ respuesta = " "
 while respuesta != "salir":
 
     listaDeTodo = ListaDoble(None, None, 0)
+    listaSolicitudes = []
         
     #Cargue de contraseñas -------------------------------------------------------
     pss = List(None,None,0)
@@ -48,7 +49,7 @@ while respuesta != "salir":
     """temp = listaDeTodo.first()
     while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
         
-        print(str(temp.getData()))
+        print(str(temp.getData().getNombre()))
         
         if temp == None:
             pass
@@ -100,10 +101,10 @@ while respuesta != "salir":
         
         if type(x) == Investigador:
             print("***********MENU***********")
-            print("1.txt inventario")
+            print("1. txt inventario")
             print("2. Agregar equipo")
             print("3. Eliminar equipo")
-            print("4.txt Estado Solicitudes")
+            print("4. txt Estado Solicitudes")
             print("5. salir")
             op = int(input())
             if op == 1:
@@ -113,6 +114,95 @@ while respuesta != "salir":
                         print(inven)
                 
                 menus()
+            elif op == 2:
+                print("Esta opcion es para crear una solicitud de agregar equipo. ")
+                respuesta = input("¿Desea continuar? Diga (si o no) ")
+                if respuesta == "si":
+                    nombre = input("Ingrese su nombre: ")
+                    tipo = "agregar"
+                    dia = int(input("Ingrese el dia en que esta haciendo la solicitud: "))
+                    mes = int(input("Ingrese el mes en que esta haciendo la solicitud: "))
+                    año = int(input("Ingrese el año de la solicitud: "))
+                    hora = int(input("Ingrese la hora en que esta haciendo la solicitud: "))
+                    min = int(input("Ingrese los minutos: "))
+                    ss = int(input("Ingrese los segundos: "))
+                    estado = "pendiente"
+
+                    fechaSolicitud = Fecha(dia, mes, año)
+                    horaSolicitud = Hora(hora, min, ss)
+                    fechita = FechaHora(fechaSolicitud, horaSolicitud)
+
+                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
+                    nuevaSolicitud.setFechaSolicitud(fechita)
+                    nuevaSolicitud.setEquipo(None)
+
+                    listaSolicitudes.append(nuevaSolicitud)
+                    """print(str(nuevaSolicitud))
+                    for soli in listaSolicitudes:
+                        if isinstance(soli, Solicitud):
+                            n = soli.getNombre()
+                    print(n)"""
+                    print("La solicitud ha sido creada y agregada con exito. ")
+                    menus()
+                elif respuesta == "no":
+                    print("Opcion equivocada")
+                    menus()
+                else:
+                    sys.exit()
+            elif op == 3:
+                print("Esta opcion es para crear una solicitud para eliminar un equipo de su inventario. ")
+                respuesta = input("¿Desea continuar? Diga (si o no) ")
+                if respuesta == "si":
+                    nombre = input("Ingrese su nombre: ")
+                    tipo = "eliminar"
+                    numPlaca = int(input("Ingrese el numero de placa del equipo que desea eliminar: "))
+                    dia = int(input("Ingrese el dia en que esta haciendo la solicitud: "))
+                    mes = int(input("Ingrese el mes en que esta haciendo la solicitud: "))
+                    año = int(input("Ingrese el año de la solicitud: "))
+                    hora = int(input("Ingrese la hora en que esta haciendo la solicitud: "))
+                    min = int(input("Ingrese los minutos: "))
+                    ss = int(input("Ingrese los segundos: "))
+                    estado = "pendiente"
+
+                    fechaSolicitud = Fecha(dia, mes, año)
+                    horaSolicitud = Hora(hora, min, ss)
+                    fechita = FechaHora(fechaSolicitud, horaSolicitud)
+                    
+                    temp = listaDeTodo.first()
+                    while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+                        nombreEnLista = temp.getData().getNombre().lower()
+                        if nombre == nombreEnLista:
+                            inven = temp.getData().getInventario()
+                        #print(inven)
+                            for i in range(len(inven)):
+                                nP = inven[i].getNumeroPlaca()
+                                if nP == numPlaca:
+                                    equipoSolicitudado = inven[i]
+                            #print(equipoSolicitudado)
+                            #Richi aqui hace falta tomar el equipo y setearlo a la solicitud.
+
+                        
+        
+                        if temp == None:
+                            pass
+                        else:
+                            temp = temp.getNext()
+
+                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
+                    nuevaSolicitud.setFechaSolicitud(fechita)
+                    nuevaSolicitud.setEquipo(None)
+
+                    listaSolicitudes.append(nuevaSolicitud)
+                    print("La solicitud ha sido creada y agregada con exito. ")
+                    menus()
+                elif respuesta == "no":
+                    print("Opcion equivocada")
+                    menus()
+                else:
+                    sys.exit()
+
+
+
             elif op == 5:
                 sys.exit()
                 
@@ -120,23 +210,30 @@ while respuesta != "salir":
          
         else:
             print("***********MENU***********")
-            print("0.Buscar usuario registrado")
-            print("1.txt inventario")
-            print("2.Agregar usuario")
-            print("3.Eliminar usuario")
-            print("4.Cambiar contraseña")
-            print("5.Solicitudes Agregar equipo")
-            print("6.Solicitudes Eliminar equipo")
-            print("7.Inventario segun investigador(txt)")
-            print("8.Inventario general(txt)")
-            print("9.Control de cambios(txt)")
-            print("10.Solicitudes agregar(txt)")
-            print("11.Solicitudes eliminar(txt)")
+            print("0. Buscar usuario registrado")
+            print("1. txt inventario")
+            print("2. Agregar usuario")
+            print("3. Eliminar usuario")
+            print("4. Cambiar contraseña")
+            print("5. Solicitudes Agregar equipo")
+            print("6. Solicitudes Eliminar equipo")
+            print("7. Inventario segun investigador(txt)")
+            print("8. Inventario general(txt)")
+            print("9. Control de cambios(txt)")
+            print("10. Solicitudes agregar(txt)")
+            print("11. Solicitudes eliminar(txt)")
             print("12. Agregar Equipo Administrador")
             print("13. Salir")
             op = int(input())
             if op == 0:                        
                 pass
+                menus()
+            elif op == 1:
+                listaEnConsola = x.getInventario()
+                for inven in listaEnConsola:
+                    if isinstance(inven, Equipo):
+                        print(inven)
+                
                 menus()
             elif op == 13:
                 sys.exit()

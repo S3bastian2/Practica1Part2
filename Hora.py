@@ -23,4 +23,4 @@ class Hora():
         self.__segundo = ss
     
     def __str__(self):
-        return str(self.__hora) + " " + str(self.__minuto) + " " + str(self.__segundo)
+        return str(self.__hora) + "/" + str(self.__minuto) + "/" + str(self.__segundo)
