@@ -123,19 +123,29 @@ IV3.setDir(d3)
 ListaTodos = [IV,IV2,IV3]
 
 #Guardar va en main
-with open("C:/EjemplosPY/Empleados.txt", "w") as archivo:
+with open("Textos/Empleados.txt", "w") as archivo:
     for emp in ListaTodos:
         if emp == ListaTodos[-1]:
             archivo.write(str(emp))
         else:
             archivo.write(str(emp)+ "\n")
+            
+            
+#txt de passwond
+with open("Textos/Password.txt", "w") as archivo:
+    for emp in ListaTodos:
+        if emp == ListaTodos[-1]:
+            archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador")
+        else:
+            archivo.write(str(emp.getId())+" "+emp.getContraseña()+" investigador"+"\n")
+        
 
-#leer va en main            
+"""#leer va en main            
 listaNueva = []
 with open("c:/EjemplosPY/Empleados.txt", "r") as archivo:
     for linea in archivo:
         listaNueva.append(Investigador.from_string(linea))
         
 for i in listaNueva:
-    print(i)
+    print(i)"""
     
