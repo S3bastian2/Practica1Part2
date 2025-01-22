@@ -174,15 +174,11 @@ while respuesta != "salir":
                         if nombre == nombreEnLista:
                             inven = temp.getData().getInventario()
                         #print(inven)
-                            for i in range(len(inven)):
-                                nP = inven[i].getNumeroPlaca()
-                                if nP == numPlaca:
-                                    equipoSolicitudado = inven[i]
-                            #print(equipoSolicitudado)
-                            #Richi aqui hace falta tomar el equipo y setearlo a la solicitud.
-
-                        
-        
+                            for equip in inven:
+                                if isinstance(equip, Equipo):
+                                    if numPlaca == equip.getNumeroPlaca():
+                                        return equip
+                                equipoEncontrado = equip
                         if temp == None:
                             pass
                         else:
@@ -190,7 +186,8 @@ while respuesta != "salir":
 
                     nuevaSolicitud = Solicitud(nombre, tipo, estado)
                     nuevaSolicitud.setFechaSolicitud(fechita)
-                    nuevaSolicitud.setEquipo(None)
+                    nuevaSolicitud.setEquipo(equipoEncontrado)
+                    print(nuevaSolicitud)
 
                     listaSolicitudes.append(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
