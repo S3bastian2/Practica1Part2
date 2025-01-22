@@ -2,12 +2,12 @@ from Usuario import *
 from Fecha import *
 
 class Equipo():
-    def __init__(self, nombreEquipo, numeroPlaca, valorCompra):
+    def __init__(self, nombreEquipo, numeroPlaca, valorCompra, empleAsociado):
         self.__nombreEquipo = nombreEquipo
         self.__numeroPlaca = numeroPlaca
         self.__fechaCompra = Fecha
         self.__valorCompra = valorCompra
-        self.__empleAsociado = Usuario
+        self.__empleAsociado = empleAsociado
 
     def setNombreEquipo(self, nombreEquipo):
         self.__nombreEquipo = nombreEquipo
@@ -40,7 +40,7 @@ class Equipo():
         return self.__empleAsociado
     
     def __str__(self):
-        return self.getNombreEquipo() + " " + str(self.getNumeroPlaca()) + " " + str(self.getFechaCompra()) + " " + str(self.getValorCompra()) + " " + str(self.getEmpleAsociado())
+        return self.getNombreEquipo() + "*" + str(self.getNumeroPlaca()) + "*" + str(self.getFechaCompra()) + "*" + str(self.getValorCompra()) + "*" + str(self.getEmpleAsociado())
     
 #E1 = Equipo("PavilionZ10", 11223344, 1250)
 #dia = 12

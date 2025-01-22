@@ -8,6 +8,7 @@ from ListaDoble import *
 from Nodo import *
 from NodoDoble import *
 from FechaHora import *
+import sys
 
 respuesta = " "
 while respuesta != "salir":
@@ -41,6 +42,18 @@ while respuesta != "salir":
             else:
                 listaDeTodo.addLast(Administrador.from_string(LEmpleados[iteracion]))
             iteracion += 1
+    
+    
+    #Prueba de contenido lista de todo :)
+    """temp = listaDeTodo.first()
+    while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+        
+        print(str(temp.getData()))
+        
+        if temp == None:
+            pass
+        else:
+            temp = temp.getNext()"""
     
     #login ------------------------------------------------------------------------------------------------
     print("*** Bienvenido al sistema ***")
@@ -76,44 +89,63 @@ while respuesta != "salir":
             else:
                 temp = temp.getNext()
         if vf == False:
-            return print("Id o contrasela incorrectos")
-    
+            print("Id o contrasela incorrectos")
+            sys.exit()
+            
     x = login()
+    
     # Menu de opciones -------------------------------------------------------------------------
     
-    if type(x) == Investigador:
-        print("***********MENU***********")
-        print("1.txt inventario")
-        print("2. Agregar equipo")
-        print("3. Eliminar equipo")
-        print("4.txt Estado Solicitudes")
-        print("4. salir")
-        op = int(input())
-        if op == 1:
-            pass
-    else:
-        print("***********MENU***********")
-        print("0.Buscar usuario registrado")
-        print("1.txt inventario")
-        print("2.Agregar usuario")
-        print("3.Eliminar usuario")
-        print("4.Cambiar contraseña")
-        print("5.Solicitudes Agregar equipo")
-        print("6.Solicitudes Eliminar equipo")
-        print("7.Inventario segun investigador(txt)")
-        print("8.Inventario general(txt)")
-        print("9.Control de cambios(txt)")
-        print("10.Solicitudes agregar(txt)")
-        print("11.Solicitudes eliminar(txt)")
-        print("12. Agregar Equipo Administrador")
-        print("13. Salir")
-        op = int(input())
-        if op == 0:                        
-            pass
-    respuesta = "salir"
-    
-"""    with open("Textos/Empleado.txt", "r") as archivo:
+    def menus():
+        
+        if type(x) == Investigador:
+            print("***********MENU***********")
+            print("1.txt inventario")
+            print("2. Agregar equipo")
+            print("3. Eliminar equipo")
+            print("4.txt Estado Solicitudes")
+            print("5. salir")
+            op = int(input())
+            if op == 1:
+                listaEnConsola = x.getInventario()
+                for inven in listaEnConsola:
+                    if isinstance(inven, Equipo):
+                        print(inven)
+                
+                menus()
+            elif op == 5:
+                sys.exit()
+                
+                
+         
+        else:
+            print("***********MENU***********")
+            print("0.Buscar usuario registrado")
+            print("1.txt inventario")
+            print("2.Agregar usuario")
+            print("3.Eliminar usuario")
+            print("4.Cambiar contraseña")
+            print("5.Solicitudes Agregar equipo")
+            print("6.Solicitudes Eliminar equipo")
+            print("7.Inventario segun investigador(txt)")
+            print("8.Inventario general(txt)")
+            print("9.Control de cambios(txt)")
+            print("10.Solicitudes agregar(txt)")
+            print("11.Solicitudes eliminar(txt)")
+            print("12. Agregar Equipo Administrador")
+            print("13. Salir")
+            op = int(input())
+            if op == 0:                        
+                pass
+                menus()
+            elif op == 13:
+                sys.exit()
+            
+            
+    menus()
+
+    with open("Textos/Empleado.txt", "r") as archivo:
         for linea in archivo:
-            listaNueva.append(Investigador.from_string(linea))"""
+            listaNueva.append(Investigador.from_string(linea))
             
 

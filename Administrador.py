@@ -83,7 +83,13 @@ class Administrador(Usuario):
         contraseña =strSpliteado[7]
         inventario = listaStr.split("|")
         for i in range(len(inventario)):
-            inventario[i] = int(inventario[i])
+            atrEquipo = inventario[i].split("*")
+            eInv = Equipo(atrEquipo[0],atrEquipo[1],atrEquipo[3],atrEquipo[4])
+            
+            atrFEquipo = atrEquipo[2].split("/")
+            fEquipo = Fecha(atrFEquipo[0],atrFEquipo[1],atrFEquipo[2])
+            eInv.setFechaCompra(fEquipo)
+            inventario[i] = eInv
             
         atrFecha = strSpliteado[2].split("/")
         fNacimiento = Fecha(atrFecha[0],atrFecha[1],atrFecha[2])
@@ -94,3 +100,37 @@ class Administrador(Usuario):
         cls.setDir(cls,direccion)
 
         return cls(nombre, id, ciudadNacimiento, tel, email, contraseña, inventario)
+    
+"""e1 = Equipo("HPproDesk", 98789876, 12000,1010)
+fe = Fecha(15,12,2005)
+e1.setFechaCompra(fe)
+
+E1 = Equipo("PavilionZ10", 11223344, 1250,3030)
+dia = 12
+mes = 1
+año = 2012
+F1 = Fecha(dia, mes, año)
+E1.setFechaCompra(F1)
+
+
+IV = Administrador("Juancho", 1010, "medallo", 3131313, "asdas@fsdf.co", "Papulon",[E1])
+f1 = Fecha(15,12,2005)
+d1 = Direccion("Kra84b","63-25","Robledo","Medellin",None,None)
+IV.setFechaNacimiento(f1)
+IV.setDir(d1)
+
+x = IV.getInventario()
+x.append(e1)
+IV.setInventario(x)
+
+with open("Textos/Empleados.txt", "w") as archivo:
+    archivo.write(str(IV))
+    
+listaNueva = []
+with open("Textos/Empleados.txt", "r") as archivo:
+    for linea in archivo:
+        listaNueva.append(Administrador.from_string(linea))
+        
+for i in listaNueva:
+    x = i.getInventario()
+    print(str(x[0]), str(x[1]))"""
