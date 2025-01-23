@@ -237,8 +237,80 @@ while respuesta != "salir":
                 for inven in listaEnConsola:
                     if isinstance(inven, Equipo):
                         print(inven)
+            
+            elif op == 2:
+                opciones = int(input("Investigador(1) o Administrador(2)?: "))
+                if opciones == 1:
+                    nombre = input("nombre: ")
+                    id = input("Ingrese su id: ")
+                    dia = int(input("Dia de cumpleaños: "))
+                    mes = int(input("Mes de cumpleaños: "))
+                    año = int(input("Año de nacimiento: "))
+                    f1 = Fecha(dia, mes, año)
+                    ciudadNacimiento = input("Ingrese la ciudad de nacimiento: ")
+                    tel = int(input("Telefono: "))
+                    email = input("email: ")
+                    calle = input("Calle: ")
+                    nmn = input("Nomenclatura: ")
+                    br = input("Barrio: ")
+                    cy = input("Ciudad: ")
+                    edf = input("Edificio: ")
+                    apTo = input("Apartamento: ")
+                    contra = input("Contraseña: ")
+                    d1 = Direccion(calle,nmn,br,cy,edf,apTo)
+                    e4 = Equipo("LenovoThinkPad", 12341234, 12000, 5050)
+                    fe4 = Fecha(15,11,2024)
+                    e4.setFechaCompra(fe4)
+                    InvCreado = Investigador(nombre, id, ciudadNacimiento, tel, email, contra, [e4])
+                    InvCreado.setFechaNacimiento(f1)
+                    InvCreado.setDir(d1)
+                    print("Objeto creado :)")
+
+                    listaDeTodo.addLast(InvCreado)
+
+                    with open("Textos/Empleados.txt", "a") as archivo:
+                        archivo.write("\n" + str(InvCreado))
+                    
+                    with open("Textos/Password.txt", "a") as archivo:
+                        archivo.write("\n" + str(InvCreado.getId()) + " " + str(InvCreado.getContraseña()) + " investigador")
                 
-                menus()
+                elif opciones == 2:
+                    nombre = input("nombre: ")
+                    id = input("Ingrese su id: ")
+                    dia = int(input("Dia de cumpleaños: "))
+                    mes = int(input("Mes de cumpleaños: "))
+                    año = int(input("Año de nacimiento: "))
+                    f1 = Fecha(dia, mes, año)
+                    ciudadNacimiento = input("Ingrese la ciudad de nacimiento: ")
+                    tel = int(input("Telefono: "))
+                    email = input("email: ")
+                    calle = input("Calle: ")
+                    nmn = input("Nomenclatura: ")
+                    br = input("Barrio: ")
+                    cy = input("Ciudad: ")
+                    edf = input("Edificio: ")
+                    apTo = input("Apartamento: ")
+                    contra = input("Contraseña: ")
+                    d1 = Direccion(calle,nmn,br,cy,edf,apTo)
+                    e3 = Equipo("LenovoThinkPad", 12320698, 12000, 6060)
+                    fe3 = Fecha(15,11,2025)
+                    e3.setFechaCompra(fe3)
+                    AdCreado = Administrador(nombre, id, ciudadNacimiento, tel, email, contra, [e3])
+                    AdCreado.setFechaNacimiento(f1)
+                    AdCreado.setDir(d1)
+                    print("Objeto creado :)")
+
+                    listaDeTodo.addLast(AdCreado)
+
+                    with open("Textos/Empleados.txt", "a") as archivo:
+                        archivo.write("\n" + str(AdCreado))
+                    
+                    with open("Textos/Password.txt", "a") as archivo:
+                        archivo.write("\n" + str(AdCreado.getId()) + " " + str(AdCreado.getContraseña()) + " Administrador")
+                
+                else:
+                    print("Opcion equivocada")   
+                    menus()
             elif op == 13:
                 sys.exit()
             
