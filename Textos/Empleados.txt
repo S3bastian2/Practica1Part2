@@ -1,4 +1,4 @@
 Carlos,1010,15/12/2005,medallo,3131313,asdas@fsdf.co,Kra84b/63-25/Robledo/Medellin/None/None,Papulon,PavilionZ10*11223344*20/12/2008*1250*1010|HPproDesk*98789876*15/12/2005*12000*1010
-Laura,2020,22/7/1990,Bogotá,3141414,laura@example.com,Carrera 15/45-10/Chapinero/Bogotá/None/None,Biologia,PavilionZ10*11223344*20/11/2008*1250*2020|HPproDesk*98789876*15/11/2005*12000*2020
-Andrés,3030,9/3/1985,Cali,3151515,andres@example.com,Calle 5/25-50/San Fernando/Cali/None/None,Quimica,PavilionZ10*11223344*20/11/2008*1250*3030|HPproDesk*98789876*15/11/2025*12000*3030
+Laura,2020,22/7/1990,Bogotá,3141414,laura@example.com,Carrera 15/45-10/Chapinero/Bogotá/None/None,Biologia,PavilionZ10*11223345*20/11/2008*1250*2020|HPproDesk*98789876*15/11/2005*12000*2020
+Andres,3030,9/3/1985,Cali,3151515,andres@example.com,Calle 5/25-50/San Fernando/Cali/None/None,Quimica,PavilionZ10*11223346*20/11/2008*1250*3030|HPproDesk*98789876*15/11/2025*12000*3030
 Felipe,4040,15/12/2005,Miami,3113290044,adidas@gmail.com.co,Kra84b/63-25/Robledo/Medellin/None/None,Sociales,MacBook Pro*98789876*19/4/2020*12000*4040

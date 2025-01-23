@@ -21,8 +21,8 @@ class Solicitud():
     def getTipo(self):
         return self.__tipo
     
-    def setEquipo(self, Equipo):
-        self.__equipo = Equipo
+    def setEquipo(self, equipo):
+        self.__equipo = equipo
     
     def getEquipo(self):
         return self.__equipo
@@ -44,20 +44,25 @@ class Solicitud():
     
     @classmethod
     def from_string(cls, string):
-        strSpliteado = string.strip().split(",")
+        strSpliteado = string.strip().split()
         nombreInvestigador = strSpliteado[0]
         tipo = strSpliteado[1]
-        estado = strSpliteado[4]
+        estado = strSpliteado[5]
         
         atrEquipo = strSpliteado[2].split("*")
-        equipAgre = Equipo(atrEquipo[0], atrEquipo[1], atrEquipo[2], atrEquipo[3], atrEquipo[4])
+        equipAgre = Equipo(atrEquipo[0], atrEquipo[1], atrEquipo[3], atrEquipo[4])
+        #Fecha del equipo----------------------------------------------------------
+        atrFechaCompra = atrEquipo[2].split("/")
+        FaAsignar = Fecha(atrFechaCompra[0],atrFechaCompra[1],atrFechaCompra[2])
+        equipAgre.setFechaCompra(FaAsignar)
+        
         cls.setEquipo(cls, equipAgre)
         
         feSoliDia = strSpliteado[3].split("/")
-        feDia = Fecha(feSoliDia[0], feSoliDia[1], feSoliDia[2])
-        feSoliHora = strSpliteado[3].split("/")
-        feHora = Hora(feSoliHora[0], feSoliHora[1], feSoliHora[2])
-        fecSoli = FechaHora(feDia, feHora)
+        fSolicitud = Fecha(feSoliDia[0], feSoliDia[1], feSoliDia[2])
+        feSoliHora = strSpliteado[4].split("/")
+        hSolicitud = Hora(feSoliHora[0], feSoliHora[1], feSoliHora[2])
+        fecSoli = FechaHora(fSolicitud, hSolicitud)
         cls.setFechaSolicitud(cls, fecSoli)
         
         return cls(nombreInvestigador, tipo, estado)
