@@ -1,2 +1,11 @@
 Carlos eliminar <class 'Equipo.Equipo'> 22/1/2025 7/41/0 pendiente
-laura eliminar <class 'Equipo.Equipo'> 22/1/2025 21/30/0 pendienteCarlos agregar None 1/1/2021 11/5/12 pendiente
+laura eliminar <class 'Equipo.Equipo'> 22/1/2025 21/30/0 pendiente
+Carlos agregar None 1/1/2021 11/5/12 pendiente
+Ricardo agregar NITRO*1556*23/1/2025 1/40/3*3000000*  23/1/2025 1/40/3 pendiente
+Ricardo agregar ACER*5623*28/2/2001 0/50/23*950052*  28/2/2001 0/50/23 pendiente
+Laura agregar Computador*8987*6/5/2001 5/4/1*65644265*  6/5/2001 5/4/1 pendiente
+Laura agregar Camara*345674*34/32/11 23/4/23*34353*  34/32/11 23/4/23 pendiente
+Laura eliminar <class 'Equipo.Equipo'> 31/12/2001 10/11/9 pendiente
+Laura agregar  11 * 123321 * 10/25/2201 45/84/1 * 541616 *  10/25/2201 45/84/1 pendiente
+Laura agregar  Carro * 5616451 * 84/58/21 20/11/10 * 21545856 *  84/58/21 20/11/10 pendiente
+Laura eliminar <class 'Equipo.Equipo'> 54/21/1120 20/11/0 pendiente

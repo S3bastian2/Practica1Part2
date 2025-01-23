@@ -102,18 +102,41 @@ while respuesta != "salir":
             print("4. txt Estado Solicitudes")
             print("5. salir")
             op = int(input())
+            
+            with open("Textos/Empleados.txt", "r") as archivo:
+                    for linea in archivo:
+                        n = linea.split(",")
+                        if NumId == n[1]:
+                            nombre = n[0]
+                        
+            
+            
             if op == 1:
+                print("Bienvenid@ " + nombre)
                 listaEnConsola = x.getInventario()
                 for inven in listaEnConsola:
                     if isinstance(inven, Equipo):
-                        print(inven)
+                        print(Equipo.__str__(inven))
+                        
+                with open("Textos/Inventario" + nombre + ".txt" , "w") as archivo:
+                    for inven in listaEnConsola:
+                        if isinstance(inven, Equipo):
+                            archivo.write(Equipo.__str__(inven) + "\n")
+                            
+                with open("Textos/Solicitudes.txt", "a") as archivo:
+                    for sol in listaSolicitudes:
+                        sol.split(" ")
+                        if sol[-1] == "aceptado" or sol[-1] == "Aceptado":
+                            archivo.write(sol + "\n")
                 
-                menus()
+                
+                
             elif op == 2:
+                print("Bienvenid@ " + nombre)
                 print("Esta opcion es para crear una solicitud de agregar equipo. ")
                 respuesta = input("¿Desea continuar? Diga (si o no) ")
                 if respuesta == "si":
-                    nombre = input("Ingrese su nombre: ")
+                    nombre = nombre
                     tipo = "agregar"
                     dia = int(input("Ingrese el dia en que esta haciendo la solicitud: "))
                     mes = int(input("Ingrese el mes en que esta haciendo la solicitud: "))
@@ -146,12 +169,17 @@ while respuesta != "salir":
                     listaSolicitudes.append(nuevaSolicitud)
 
                     print("La solicitud ha sido creada y agregada con exito. ")
-                    with open("Textos/Solicitudes.txt", "a") as archivo:
-                        if nuevaSolicitud == listaSolicitudes[0]:
-                            archivo.write(str(nuevaSolicitud))
+                    print(str(nuevaSolicitud))
+                    
+                    with open("Textos/Solicitudes.txt", "a") as documento:
+                        if documento.tell() == 0:
+                            documento.write(str(nuevaSolicitud))
                         else:
-                            archivo.write("\n"+str(nuevaSolicitud)) 
+                            documento.write("\n" + str(nuevaSolicitud))
+                    
+                            
                     menus()
+                    
                 elif respuesta == "no":
                     print("Opcion equivocada")
                     menus()
@@ -159,10 +187,11 @@ while respuesta != "salir":
                     sys.exit()
                     
             elif op == 3:
+                print("Bienvenid@ " + nombre)
                 print("Esta opcion es para crear una solicitud para eliminar un equipo de su inventario. ")
                 respuesta = input("¿Desea continuar? Diga (si o no) ")
                 if respuesta == "si":
-                    nombre = input("Ingrese su nombre: ")
+                    nombre = nombre
                     tipo = "eliminar"
                     numPlaca = int(input("Ingrese el numero de placa del equipo que desea eliminar: "))
                     dia = int(input("Ingrese el dia en que esta haciendo la solicitud: "))
@@ -197,7 +226,7 @@ while respuesta != "salir":
 
                     listaSolicitudes.append(nuevaSolicitud)
                     #print(nuevaSolicitud)
-                    print("La solicitud ha sido creada y agregada con exito. ")
+                    print("La solicitud de eliminar un equipo ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
                             archivo.write("\n" + str(nuevaSolicitud))
                     menus()
@@ -207,7 +236,24 @@ while respuesta != "salir":
                 else:
                     sys.exit()
             elif op == 4:
-                print(listaSolicitudes)
+                print("Bienvenid@ " + nombre)
+                with open("Textos/Solicitudes.txt", "r") as archivo:
+                        for linea in archivo:
+                            soli = linea.split(" ")
+                            
+                            if soli[0] == nombre:
+                                listaSolicitudes.append(soli)
+                            print(listaSolicitudes)  
+                            
+                            
+                            for solicitud in listaSolicitudes:
+                               print(f"Nombre: {solicitud[0]}, Tipo: {solicitud[1]}, Estado: {solicitud[-1]}, Fecha: {solicitud[3]}")
+    
+                                
+                        
+                menus()
+                        
+                
 
 
             elif op == 5:
