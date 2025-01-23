@@ -142,14 +142,13 @@ while respuesta != "salir":
                         if isinstance(soli, Solicitud):
                             n = soli.getNombre()
                     print(n)"""
+                    
                     print("La solicitud ha sido creada y agregada con exito. ")
-                    with open("Textos/Solicitudes.txt", "w") as archivo:
-                        for obje in listaSolicitudes:
-                            
-                            if obje == listaSolicitudes[-1]:
-                                archivo.write(str(obje))
-                            else:
-                                archivo.write(str(obje)+ "\n")
+                    with open("Textos/Solicitudes.txt", "a") as archivo:
+                        if nuevaSolicitud == listaSolicitudes[0]:
+                            archivo.write(str(nuevaSolicitud))
+                        else:
+                            archivo.write("\n"+str(nuevaSolicitud)) 
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
@@ -175,6 +174,9 @@ while respuesta != "salir":
                     horaSolicitud = Hora(hora, min, ss)
                     fechita = FechaHora(fechaSolicitud, horaSolicitud)
                     
+                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
+                    nuevaSolicitud.setFechaSolicitud(fechita)
+                    
                     temp = listaDeTodo.first()
                     while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
                         nombreEnLista = temp.getData().getNombre().lower()
@@ -184,19 +186,20 @@ while respuesta != "salir":
                             for equip in inven:
                                 if isinstance(equip, Equipo):
                                     if numPlaca == equip.getNumeroPlaca():
-                                        return equip
-                                equipoEncontrado = equip
+                                        nuevaSolicitud.setEquipo(equip)
                         if temp == None:
                             pass
                         else:
                             temp = temp.getNext()
 
-                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
-                    nuevaSolicitud.setFechaSolicitud(fechita)
-                    nuevaSolicitud.setEquipo(equipoEncontrado)
                     listaSolicitudes.append(nuevaSolicitud)
-                    print(nuevaSolicitud)
+                    #print(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
+                    with open("Textos/Solicitudes.txt", "a") as archivo:
+                        if nuevaSolicitud == listaSolicitudes[0]:
+                            archivo.write(str(nuevaSolicitud))
+                        else:
+                            archivo.write("\n"+str(nuevaSolicitud)) 
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")

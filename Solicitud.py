@@ -40,7 +40,7 @@ class Solicitud():
         return self.__estado
     
     def __str__(self):
-        return str(self.getNombre()) + " " + str(self.getTipo()) + " " + str(self.getEquipo()) + " " + str(self.getFechaSolicitud()) + " " + str(self.getEstado())
+        return self.getNombre() + " " + self.getTipo() + " " + str(self.getEquipo()) + " " + str(self.getFechaSolicitud()) + " " + self.getEstado()
     
     @classmethod
     def from_string(cls, string):
@@ -49,7 +49,7 @@ class Solicitud():
         tipo = strSpliteado[1]
         estado = strSpliteado[4]
         
-        atrEquipo = strSpliteado[2].split("|")
+        atrEquipo = strSpliteado[2].split("*")
         equipAgre = Equipo(atrEquipo[0], atrEquipo[1], atrEquipo[2], atrEquipo[3], atrEquipo[4])
         cls.setEquipo(cls, equipAgre)
         
