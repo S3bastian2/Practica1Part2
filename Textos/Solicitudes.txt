@@ -1,2 +1,2 @@
 Carlos eliminar <class 'Equipo.Equipo'> 22/1/2025 7/41/0 pendiente
-laura eliminar <class 'Equipo.Equipo'> 22/1/2025 21/30/0 pendiente
+laura eliminar <class 'Equipo.Equipo'> 22/1/2025 21/30/0 pendienteCarlos agregar None 1/1/2021 11/5/12 pendiente

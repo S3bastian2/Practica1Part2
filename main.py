@@ -239,6 +239,62 @@ while respuesta != "salir":
                         print(inven)
                 
                 menus()
+            elif op == 2:
+                print("Esta opcion es para crear un nuevo usuario. ")
+                respuesta = input("¿Desea continuar? Diga (si o no) ")
+                if respuesta == "si":
+                    nombre = input("Ingrese el nombre del nuevo usuario: ")
+                    id = int(input("Ingrese el id del nuevo usuario: "))
+                    contra = input("Ingrese la contraseña del nuevo usuario: ")
+                    ciudadNacimiento = input("Ingrese la ciudad de nacimiento del nuevo usuario: ")
+                    tel = int(input("Ingrese el telefono del nuevo usuario: "))
+                    email = input("Ingrese el email del nuevo usuario: ")
+                    
+                    dd = int(input("Ingrese el dia de nacimiento: "))
+                    mm= int(input("Ingrese el mes de nacimiento: "))
+                    aa = int(input("Ingrese el año de nacimiento: "))
+                    fechita = Fecha(dd, mm, aa)
+                    
+                    calle = input("Ingrese la calle de la direccion: ")
+                    nomenclatura = input("Ingrese la nomenclatura de la direccion: ")
+                    barrio = input("Ingrese el barrio de la direccion: ")
+                    edificio = input("Ingrese el edificio de la direccion: ")
+                    apto = input("Ingrese el apto de la direccion: ")
+                    
+                    nuevaDireccion = Direccion(calle, nomenclatura, barrio, ciudadNacimiento, edificio, apto)
+                                   
+                    tipo = input("Ingrese el tipo de usuario: ").lower()
+                    if tipo == "investigador":
+                        nuevoUsuario = Investigador(nombre, id, ciudadNacimiento, tel, email, contra, [])
+                        nuevoUsuario.setFechaNacimiento(fechita)
+                        nuevoUsuario.setDir(nuevaDireccion)
+                        
+                        with open("Textos/Password.txt", "a") as archivo:
+                            archivo.write("\n"+str(id)+" "+contra+" "+tipo)
+                            
+                    else:
+                        nuevoUsuario = Administrador(nombre, id, ciudadNacimiento, tel, email, contra, [])
+                        nuevoUsuario.setFechaNacimiento(fechita)
+                        nuevoUsuario.setDir(nuevaDireccion)
+                        
+                        with open("Textos/Password.txt", "a") as archivo:
+                            archivo.write("\n"+str(id)+" "+contra+" "+tipo)
+                        
+                    listaDeTodo.addLast(nuevoUsuario)
+                    print("El usuario ha sido creado con exito. ")
+                    
+                    with open("Textos/Empleados.txt", "a") as archivo:
+                        if None == listaDeTodo.first().getData():
+                            archivo.write(str(nuevoUsuario))
+                        else:
+                            archivo.write("\n"+str(nuevoUsuario))
+                    menus()
+                elif respuesta == "no":
+                    print("Opcion equivocada")
+                    menus()
+                else:
+                    sys.exit()
+                
             elif op == 13:
                 sys.exit()
             
