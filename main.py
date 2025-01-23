@@ -25,7 +25,7 @@ while respuesta != "salir":
     
     #cargue de los objetos a lista de todo ---------------------------------------
     tipos = []
-    with open ("Textos/password.txt", "r") as contraseñas:
+    with open ("Textos/Password.txt", "r") as contraseñas:
         for i in contraseñas:
             x = i.split()
             tipos.append(x[-1])
@@ -196,10 +196,7 @@ while respuesta != "salir":
                     #print(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
-                        if nuevaSolicitud == listaSolicitudes[0]:
-                            archivo.write(str(nuevaSolicitud))
-                        else:
-                            archivo.write("\n"+str(nuevaSolicitud)) 
+                            archivo.write("\n" + str(nuevaSolicitud))
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
