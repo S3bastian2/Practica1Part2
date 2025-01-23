@@ -156,7 +156,7 @@ while respuesta != "salir":
                     Nlinea = []
                     for linea in archivo:
                         atrSoli = linea.split()
-                        if atrSoli[5] == "aprobado":
+                        if atrSoli[5] == "aprobado" and atrSoli[0] == x.getNombre():
                             atrEq = atrSoli[2].split("*")
                             ENuevo = Equipo(str(atrEq[0]),int(atrEq[1]),int(atrEq[3]),int(atrEq[4]))
                             atrff = atrEq[2].split("/")
@@ -168,23 +168,23 @@ while respuesta != "salir":
                             Nlinea.append(ENuevo)
                             
                     
-                    temp = listaDeTodo.first()
-                    while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+                    InventarioMio = x.getInventario()
+                    for i in InventarioMio:
+                        peaBuscar = i.getNumeroPlaca()
+                        print(peaBuscar)
+                        """ = x.getInventario()[i].getNumeroPlaca()
+                        for h in Nlinea:
+                            if peaBuscar != h.getNumeroPlaca():
+                                old = InventarioMio
+                                InventarioMio = old.append(h)
+                                x.setInventario(InventarioMio)
+                            else:
+                                print("Equipo ya existente en inventario")"""
                         
-                       
-                        if temp == None:
-                            pass
-                        else:
-                            temp = temp.getNext()
-
-
-                    for i in Nlinea:
-                        old = x.getInventario()
-                        new = old.append(i)
-                        x.setInventario(new)
-                        
-                        
-                """listaEnConsola = x.getInventario()
+                    """for i in InventarioMio:
+                        print(str(i))
+                    print(str(Nlinea[0]))
+                listaEnConsola = x.getInventario()
                 for inven in listaEnConsola:
                     if isinstance(inven, Equipo):
                         print(inven)"""
