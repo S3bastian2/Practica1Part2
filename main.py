@@ -15,7 +15,51 @@ while respuesta != "salir":
 
     listaDeTodo = ListaDoble(None, None, 0)
     listaSolicitudes = []
-        
+    
+    #cargue de solicitudes-----------------------------------------------------------
+    with open("Textos/Solicitudes.txt", "r") as solis:
+        for i in solis:
+            strSpliteado = i.split()
+            #Para equipo***********************************
+            atrEquipo = strSpliteado[2].split("*")
+            nombreEquipo = atrEquipo[0]
+            placaEquipo = int(atrEquipo[1])
+            valorCompra = int(atrEquipo[3])
+            empAsociado = int(atrEquipo[4])
+            #Fecha----------------------------
+            atrFecha = atrEquipo[2].split("/")
+            dd = int(atrFecha[0])
+            mm = int(atrFecha[1])
+            aa = int(atrFecha[2])
+            faAsignar = Fecha(dd,mm,aa)
+            EaAsignar = Equipo(nombreEquipo,placaEquipo,valorCompra,empAsociado)
+            EaAsignar.setFechaCompra(faAsignar)
+            #*************************************************
+            
+            #para Fecha y hora**********************************
+            aTrFecha = strSpliteado[3]
+            dd = int(atrFecha[0])
+            mm = int(atrFecha[1])
+            aa = int(atrFecha[2])
+            faAsignar = Fecha(dd,mm,aa)
+            
+            aTrHora = strSpliteado[4].split("/")
+            hh = int(aTrHora[0])
+            mim = int(aTrHora[1])
+            ss = int(aTrHora[2])
+            haAsignar = Hora(hh,mim,ss)
+            
+            fhaAsignar = FechaHora(faAsignar, haAsignar)
+            #******************************************************
+            
+            
+            x = Solicitud.from_string(i)
+            x.setEquipo(EaAsignar)
+            x.setFechaSolicitud(fhaAsignar)
+            listaSolicitudes.append(x)
+            
+        print(listaSolicitudes)
+                    
     #Cargue de contraseñas -------------------------------------------------------
     pss = List(None,None,0)
     with open("Textos/Password.txt", "r") as contraseñas:
@@ -139,18 +183,27 @@ while respuesta != "salir":
                     
                      
 
+                    nombreEquipo = input("Ingrese el nombre del equipo: ")
+                    numeroPlaca = int(input("Ingrese el numero de placa: "))
+                    dd = int(input("Ingrese el dia de compra: "))
+                    mm = int(input("Ingrese el mes de compra: "))
+                    aa = int(input("Ingrese el año de compra: "))
+                    fCompra = Fecha(dd,mm,aa)
+                    valorCompra = int(input("Ingrese cuanto le costo: "))
+                    empleAsociado = x.getId()
+                    EáAsignar = Equipo(nombreEquipo,numeroPlaca,valorCompra,empleAsociado)
+                    EáAsignar.setFechaCompra(fCompra)
+                    
                     nuevaSolicitud = Solicitud(nombre, tipo, estado)
                     nuevaSolicitud.setFechaSolicitud(fechita)
-                    nuevaSolicitud.setEquipo(equipoNuevo)
+                    nuevaSolicitud.setEquipo(EáAsignar)
 
                     listaSolicitudes.append(nuevaSolicitud)
 
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
-                        if nuevaSolicitud == listaSolicitudes[0]:
-                            archivo.write(str(nuevaSolicitud))
-                        else:
-                            archivo.write("\n"+str(nuevaSolicitud)) 
+                        archivo.write("\n"+str(nuevaSolicitud)) 
+
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
@@ -177,37 +230,51 @@ while respuesta != "salir":
                     horaSolicitud = Hora(hora, min, ss)
                     fechita = FechaHora(fechaSolicitud, horaSolicitud)
                     
-                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
-                    nuevaSolicitud.setFechaSolicitud(fechita)
                     
+                    listatodos = []
                     temp = listaDeTodo.first()
                     while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
-                        nombreEnLista = temp.getData().getNombre().lower()
-                        if nombre == nombreEnLista:
-                            inven = temp.getData().getInventario()
-                        #print(inven)
-                            for equip in inven:
-                                if isinstance(equip, Equipo):
-                                    if numPlaca == equip.getNumeroPlaca():
-                                        nuevaSolicitud.setEquipo(equip)
+                        listatodos.append(temp.getData())
                         if temp == None:
                             pass
                         else:
                             temp = temp.getNext()
+                    
+                    IEspecifico = []
+                    EaAsignar = None
+                    for i in range(len(listatodos)):
+                        n = str(listatodos[i].getNombre())
+                        p = listatodos[i].getInventario()
+                        if nombre == n:
+                            for y in p:
+                                IEspecifico.append(y)
+                    for i in range(len(IEspecifico)):                    
+                        if numPlaca == int(IEspecifico[i].getNumeroPlaca()):
+                            EaAsignar = IEspecifico[i]
+                    
 
+                    nuevaSolicitud = Solicitud(nombre, tipo, estado)
+                    nuevaSolicitud.setFechaSolicitud(fechita)
+                    nuevaSolicitud.setEquipo(EaAsignar)
+                    
                     listaSolicitudes.append(nuevaSolicitud)
-                    #print(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
-                            archivo.write("\n" + str(nuevaSolicitud))
+                            if nuevaSolicitud == listaSolicitudes[0]:
+                                archivo.write(str(nuevaSolicitud))    
+                            else:
+                                archivo.write("\n" + str(nuevaSolicitud))
+                            
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
                     menus()
                 else:
                     sys.exit()
+                    
+                    
             elif op == 4:
-                print(listaSolicitudes)
+                pass
 
 
             elif op == 5:
@@ -232,15 +299,22 @@ while respuesta != "salir":
             print("12. Agregar Equipo Administrador")
             print("13. Salir")
             op = int(input())
-            if op == 0:                        
-                pass
+            if op == 0:
+                US = print(input("Ingrese el nombre del usuario que desea buscar: "))
+                for i in len(ListaDeTodo()):
+                    if US == i.getNombre():
+                        print(i)
+                temp = listaDeTodo()
+                
                 menus()
             elif op == 1:
                 listaEnConsola = x.getInventario()
                 for inven in listaEnConsola:
                     if isinstance(inven, Equipo):
                         print(inven)
-                
+            elif op == 2:
+                    
+            
                 menus()
             elif op == 13:
                 sys.exit()
