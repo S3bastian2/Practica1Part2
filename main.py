@@ -145,7 +145,7 @@ while respuesta != "salir":
         
         if type(x) == Investigador:
             print("***********MENU***********")
-            print("1. txt inventario")
+            print("1. inventario")
             print("2. Agregar equipo")
             print("3. Eliminar equipo")
             print("4. txt Estado Solicitudes")
@@ -271,7 +271,27 @@ while respuesta != "salir":
                     
                     
             elif op == 4:
-                pass
+                solicitudesIV = []
+                with open("Textos/Solicitudes.txt", "r") as archivo:
+                        for linea in archivo:
+                            soli = linea.split()
+                            equipo = soli[2].split("*")
+                            strequipo = equipo[0]+" "+equipo[1]+" "+equipo[2]+" "+equipo[3]+" "+equipo[4]
+                            
+                            lineota = soli[0]+" "+soli[1]+" "+strequipo+" "+soli[3]+" "+soli[4]+" "+soli[5]
+                            
+                            if soli[0] == x.getNombre():
+                                solicitudesIV.append(lineota)
+                
+                with open("Textos/"+x.getNombre()+" "+str(x.getId())+" solicitudes.txt", "w") as file:
+                    for i in solicitudesIV:
+                        if i != solicitudesIV[0]:
+                            file.write("\n"+i)
+                        else:
+                            file.write(i)
+                print("Archivo creado con éxito")
+    
+                menus()
 
 
             elif op == 5:
