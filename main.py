@@ -146,6 +146,10 @@ while respuesta != "salir":
                     with open("Textos/Solicitudes.txt", "w") as archivo:
                         for obje in listaSolicitudes:
                             
+                            if obje == listaSolicitudes[-1]:
+                                archivo.write(str(obje))
+                            else:
+                                archivo.write(str(obje)+ "\n")
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
