@@ -152,6 +152,11 @@ while respuesta != "salir":
             print("5. salir")
             op = int(input())
             if op == 1:
+                LPlacas = []
+                InventarioMio = x.getInventario()
+                for i in InventarioMio:
+                    LPlacas.append(int(i.getNumeroPlaca()))
+                    
                 with open("Textos/Solicitudes.txt", "r") as archivo:
                     Nlinea = []
                     for linea in archivo:
@@ -168,18 +173,33 @@ while respuesta != "salir":
                             Nlinea.append(ENuevo)
                             
                     
-                    InventarioMio = x.getInventario()
-                    for i in InventarioMio:
-                        peaBuscar = i.getNumeroPlaca()
-                        print(peaBuscar)
-                        """ = x.getInventario()[i].getNumeroPlaca()
-                        for h in Nlinea:
-                            if peaBuscar != h.getNumeroPlaca():
-                                old = InventarioMio
-                                InventarioMio = old.append(h)
-                                x.setInventario(InventarioMio)
-                            else:
-                                print("Equipo ya existente en inventario")"""
+                    for y in Nlinea:
+                        pNueva = int(y.getNumeroPlaca())
+                         
+                        if pNueva in LPlacas:
+                            print("Equipo ya existente en inventario")
+                            
+                        else:
+                            old = x.getInventario()
+                            old.append(ENuevo)
+                            x.setInventario(old)
+
+                            
+                            
+                            listaLineas = []
+                            with open("Textos/Empleados.txt", "r") as file:
+                                for i in file:
+                                    if x.getNombre() in i:
+                                        i = i.strip("\n")
+                                        l = i +"|" +str(x.getInventario()[-1])+"\n"
+                                        listaLineas.append(l)
+                                    else:
+                                        listaLineas.append(i)
+                                        
+                            with open("Textos/Empleados.txt", "w") as archivo:
+                                archivo.writelines(listaLineas)
+                            
+
                         
                     """for i in InventarioMio:
                         print(str(i))
