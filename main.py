@@ -32,18 +32,13 @@ while respuesta != "salir":
     
     
     with open("Textos/Empleados.txt", "r") as empleados:
-        LEmpleados =[]
-        for linea in empleados:
-            LEmpleados.append(linea)
-    
-        iteracion = 0
-        while iteracion != len(tipos):
-            if tipos[iteracion] == "investigador":
-                listaDeTodo.addLast(Investigador.from_string(LEmpleados[iteracion]))
+        for i in empleados:
+            if tipos[0] == "investigador":
+                listaDeTodo.addLast(Investigador.from_string(i))
+                tipos.pop(0)
             else:
-                listaDeTodo.addLast(Administrador.from_string(LEmpleados[iteracion]))
-            iteracion += 1
-    
+                listaDeTodo.addLast(Administrador.from_string(i))
+                tipos.pop(0)
     
     #Prueba de contenido lista de todo :)
     """temp = listaDeTodo.first()
@@ -127,22 +122,29 @@ while respuesta != "salir":
                     min = int(input("Ingrese los minutos: "))
                     ss = int(input("Ingrese los segundos: "))
                     estado = "pendiente"
+                    tipoEquipo = input("Ingrese el tipo de equipo: ")
+                    numPlaca = int(input("Ingrese el numero de placa: "))
+                    valor = int(input("Ingrese el valor del equipo: "))
+                    empAsociado = nombre
+                    
+                   
+                    
 
                     fechaSolicitud = Fecha(dia, mes, año)
                     horaSolicitud = Hora(hora, min, ss)
                     fechita = FechaHora(fechaSolicitud, horaSolicitud)
+                    
+                    equipoNuevo = Equipo(tipoEquipo, numPlaca, valor, empAsociado)
+                    equipoNuevo.setFechaCompra(fechita)
+                    
+                     
 
                     nuevaSolicitud = Solicitud(nombre, tipo, estado)
                     nuevaSolicitud.setFechaSolicitud(fechita)
-                    nuevaSolicitud.setEquipo(None)
+                    nuevaSolicitud.setEquipo(equipoNuevo)
 
                     listaSolicitudes.append(nuevaSolicitud)
-                    """print(str(nuevaSolicitud)) #Probando si las solicitud se esta creando correctamente.
-                    for soli in listaSolicitudes:
-                        if isinstance(soli, Solicitud):
-                            n = soli.getNombre()
-                    print(n)"""
-                    
+
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
                         if nuevaSolicitud == listaSolicitudes[0]:
@@ -155,6 +157,7 @@ while respuesta != "salir":
                     menus()
                 else:
                     sys.exit()
+                    
             elif op == 3:
                 print("Esta opcion es para crear una solicitud para eliminar un equipo de su inventario. ")
                 respuesta = input("¿Desea continuar? Diga (si o no) ")
@@ -288,6 +291,49 @@ while respuesta != "salir":
                             archivo.write(str(nuevoUsuario))
                         else:
                             archivo.write("\n"+str(nuevoUsuario))
+                    menus()
+                elif respuesta == "no":
+                    print("Opcion equivocada")
+                    menus()
+                else:
+                    sys.exit()
+                    
+            elif op == 3:
+                print("Esta opcion es para eliminar un usuario. ")
+                respuesta = input("¿Desea continuar? Diga (si o no) ")
+                if respuesta == "si":
+                    id = int(input("Ingrese el id del usuario a eliminar: "))
+                    temp = listaDeTodo.first()
+                    
+                    empleados_data = []
+                    
+                    with open("Textos/Empleados.txt", "r") as arch:
+                        empleados_data = arch.readlines()
+                    
+                    with open("Textos/Empleados.txt", "w") as arch:
+                        for empleados in empleados_data:
+                            g = empleados.split()
+                            if int(g[1]) != id:
+                                arch.write(empleados)
+                                
+                    with open("Textos/Password.txt", "w") as archivo:
+                        temp = pss.First()
+                        while temp is not None:
+                            contras = temp.getData()
+                            if int(contras[0]) != id:
+                                archivo.write(" ".join(map(str, contras)) + "\n")
+                            temp = temp.getNext()
+                            
+                                
+                        
+                    while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+                        if id == temp.getData().getId():
+                            listaDeTodo.remove(temp)
+                            print("El usuario ha sido eliminado con exito. ")
+                        if temp == None:
+                            pass
+                        else:
+                            temp = temp.getNext()
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")
