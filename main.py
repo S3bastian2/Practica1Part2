@@ -76,13 +76,18 @@ while respuesta != "salir":
     
     
     with open("Textos/Empleados.txt", "r") as empleados:
-        for i in empleados:
-            if tipos[0] == "investigador":
-                listaDeTodo.addLast(Investigador.from_string(i))
-                tipos.pop(0)
+        LEmpleados =[]
+        for linea in empleados:
+            LEmpleados.append(linea)
+    
+        iteracion = 0
+        while iteracion != len(tipos):
+            if tipos[iteracion] == "investigador":
+                listaDeTodo.addLast(Investigador.from_string(LEmpleados[iteracion]))
             else:
-                listaDeTodo.addLast(Administrador.from_string(i))
-                tipos.pop(0)
+                listaDeTodo.addLast(Administrador.from_string(LEmpleados[iteracion]))
+            iteracion += 1
+    
     
     #Prueba de contenido lista de todo :)
     """temp = listaDeTodo.first()
@@ -147,10 +152,42 @@ while respuesta != "salir":
             print("5. salir")
             op = int(input())
             if op == 1:
-                listaEnConsola = x.getInventario()
+                with open("Textos/Solicitudes.txt", "r") as archivo:
+                    Nlinea = []
+                    for linea in archivo:
+                        atrSoli = linea.split()
+                        if atrSoli[5] == "aprobado":
+                            atrEq = atrSoli[2].split("*")
+                            ENuevo = Equipo(str(atrEq[0]),int(atrEq[1]),int(atrEq[3]),int(atrEq[4]))
+                            atrff = atrEq[2].split("/")
+                            dd = int(atrff[0])
+                            mm = int(atrff[1])
+                            aa = int(atrff[2])
+                            ff = Fecha(dd,mm,aa)
+                            ENuevo.setFechaCompra(ff)
+                            Nlinea.append(ENuevo)
+                            
+                    
+                    temp = listaDeTodo.first()
+                    while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+                        
+                       
+                        if temp == None:
+                            pass
+                        else:
+                            temp = temp.getNext()
+
+
+                    for i in Nlinea:
+                        old = x.getInventario()
+                        new = old.append(i)
+                        x.setInventario(new)
+                        
+                        
+                """listaEnConsola = x.getInventario()
                 for inven in listaEnConsola:
                     if isinstance(inven, Equipo):
-                        print(inven)
+                        print(inven)"""
                 
                 menus()
             elif op == 2:
@@ -166,22 +203,10 @@ while respuesta != "salir":
                     min = int(input("Ingrese los minutos: "))
                     ss = int(input("Ingrese los segundos: "))
                     estado = "pendiente"
-                    tipoEquipo = input("Ingrese el tipo de equipo: ")
-                    numPlaca = int(input("Ingrese el numero de placa: "))
-                    valor = int(input("Ingrese el valor del equipo: "))
-                    empAsociado = nombre
-                    
-                   
-                    
 
                     fechaSolicitud = Fecha(dia, mes, año)
                     horaSolicitud = Hora(hora, min, ss)
                     fechita = FechaHora(fechaSolicitud, horaSolicitud)
-                    
-                    equipoNuevo = Equipo(tipoEquipo, numPlaca, valor, empAsociado)
-                    equipoNuevo.setFechaCompra(fechita)
-                    
-                     
 
                     nombreEquipo = input("Ingrese el nombre del equipo: ")
                     numeroPlaca = int(input("Ingrese el numero de placa: "))
@@ -199,7 +224,12 @@ while respuesta != "salir":
                     nuevaSolicitud.setEquipo(EáAsignar)
 
                     listaSolicitudes.append(nuevaSolicitud)
-
+                    """print(str(nuevaSolicitud)) #Probando si las solicitud se esta creando correctamente.
+                    for soli in listaSolicitudes:
+                        if isinstance(soli, Solicitud):
+                            n = soli.getNombre()
+                    print(n)"""
+                    
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
                         archivo.write("\n"+str(nuevaSolicitud)) 
@@ -210,7 +240,6 @@ while respuesta != "salir":
                     menus()
                 else:
                     sys.exit()
-                    
             elif op == 3:
                 print("Esta opcion es para crear una solicitud para eliminar un equipo de su inventario. ")
                 respuesta = input("¿Desea continuar? Diga (si o no) ")
@@ -319,13 +348,8 @@ while respuesta != "salir":
             print("12. Agregar Equipo Administrador")
             print("13. Salir")
             op = int(input())
-            if op == 0:
-                US = print(input("Ingrese el nombre del usuario que desea buscar: "))
-                for i in len(ListaDeTodo()):
-                    if US == i.getNombre():
-                        print(i)
-                temp = listaDeTodo()
-                
+            if op == 0:                        
+                pass
                 menus()
             elif op == 1:
                 listaEnConsola = x.getInventario()
