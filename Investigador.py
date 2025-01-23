@@ -81,6 +81,7 @@ class Investigador(Usuario):
         tel = int(strSpliteado[4])
         email = strSpliteado[5]
         contraseña =strSpliteado[7]
+        #print(type(listaStr))
         
         inventario = listaStr.split("|")
         for i in range(len(inventario)):
