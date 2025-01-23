@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
 Andres eliminar PavilionZ10*11223346*20/11/2008*1250*3030 23/1/2025 1/27/0 pendiente
 Carlos agregar Omen*13243546*22/1/2025*1000000*1010 23/1/2025 1/54/0 pendiente
 Carlos agregar Alienware*13749653*22/1/2025*500000*1010 23/1/2025 2/28/0 pendiente
+=======
+Carlos eliminar <class 'Equipo.Equipo'> 1/2/3 4/5/6 pendienteCarlos eliminar <class 'Equipo.Equipo'> 1/2/3 4/5/6 pendiente
+>>>>>>> Stashed changes

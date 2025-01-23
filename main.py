@@ -231,7 +231,18 @@ while respuesta != "salir":
                     listatodos = []
                     temp = listaDeTodo.first()
                     while temp != None and (temp != listaDeTodo.last() or temp == listaDeTodo.last()):
+<<<<<<< Updated upstream
                         listatodos.append(temp.getData())
+=======
+                        nombreEnLista = temp.getData().getNombre().lower()
+                        if nombre == nombreEnLista:
+                            inven = temp.getData().getInventario()
+                        #print(inven)
+                            for equip in inven:
+                                if numPlaca == equip.getNumeroPlaca():
+                                    nuevaSolicitud.setEquipo(equip)
+                                    
+>>>>>>> Stashed changes
                         if temp == None:
                             pass
                         else:
@@ -257,11 +268,20 @@ while respuesta != "salir":
                     listaSolicitudes.append(nuevaSolicitud)
                     print("La solicitud ha sido creada y agregada con exito. ")
                     with open("Textos/Solicitudes.txt", "a") as archivo:
+<<<<<<< Updated upstream
                             if nuevaSolicitud == listaSolicitudes[0]:
                                 archivo.write(str(nuevaSolicitud))    
                             else:
                                 archivo.write("\n" + str(nuevaSolicitud))
                             
+=======
+                        if nuevaSolicitud == listaSolicitudes[0]:
+                            archivo.write(str(nuevaSolicitud))
+                            e1 = nuevaSolicitud.getEquipo()
+                            print(str(e1))
+                        else:
+                            archivo.write("\n"+str(nuevaSolicitud)) 
+>>>>>>> Stashed changes
                     menus()
                 elif respuesta == "no":
                     print("Opcion equivocada")

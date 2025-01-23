@@ -40,7 +40,8 @@ class Solicitud():
         return self.__estado
     
     def __str__(self):
-        return self.getNombre() + " " + self.getTipo() + " " + str(self.getEquipo()) + " " + str(self.getFechaSolicitud()) + " " + self.getEstado()
+        atrEquipo = str(self.getEquipo())
+        return self.getNombre() + " " + self.getTipo() + " " + atrEquipo + " " + str(self.getFechaSolicitud()) + " " + self.getEstado()
     
     @classmethod
     def from_string(cls, string):
@@ -66,5 +67,17 @@ class Solicitud():
         cls.setFechaSolicitud(cls, fecSoli)
         
         return cls(nombreInvestigador, tipo, estado)
+"""
+s = Solicitud("yo", "Agregar", "Esperando")
 
-        
+e1 = Equipo("arara", 12134265767, 12312415, 1010)
+
+f1 = Fecha(15,2,2000)
+h1 = Hora(7,30,00)
+fh = FechaHora(f1,h1)
+
+e1.setFechaCompra(f1)
+s.setEquipo(e1)
+s.setFechaSolicitud(fh)
+
+print(str(s))"""
